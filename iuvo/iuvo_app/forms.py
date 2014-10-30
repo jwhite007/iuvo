@@ -11,6 +11,10 @@ class ContactForm(ModelForm):
 
 
 class EventForm(ModelForm):
+    def __init__(self, current_user, *args, **kwargs):
+        super(EventForm, self).__init__(*args, **kwargs)
+        self.fields['contacts'].queryset = self.fields['contacts'].queryset.filter(owner_id=current_user.id)
+
     tzchoices = [
         ('US/Hawaii', 'US/Hawaii'),
         ('US/Alaska', 'US/Alaska'),
@@ -21,6 +25,7 @@ class EventForm(ModelForm):
         ('US/Eastern', 'US/Eastern'),
     ]
     timezone = ChoiceField(choices=tzchoices)
+
 
     class Meta:
         model = Event
