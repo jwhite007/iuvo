@@ -31,8 +31,13 @@ urlpatterns = patterns(
     url(r'^(\d+)/contacts/(\d+)/delete/$', 'delete_contact_view', name='delete_contact'),
 )
 
-urlpatterns += patterns(
-    'django.contrib.auth.views',
-    url(r'^login/$', 'login', {'template_name': 'registration/login.html'}, name='login'),
-    url(r'^logout/$', 'logout', {'next_page': 'iuvo_app.views.home_view'}, name='logout'),
-)
+urlpatterns += patterns('django.contrib.auth.views',
+                        url(r'^logout/$', 'logout', {'next_page':
+                            'iuvo_app.views.home_view'}, name='logout'),
+                        )
+
+# urlpatterns += patterns(
+#     'django.contrib.auth.views',
+#     url(r'^login/$', 'login', {'template_name': 'registration/login.html'}, name='login'),
+#     url(r'^logout/$', 'logout', {'next_page': 'iuvo_app.views.home_view'}, name='logout'),
+# )
