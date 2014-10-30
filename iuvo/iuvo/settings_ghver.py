@@ -138,7 +138,7 @@ class Dev(Base):
     TEMPLATE_DEBUG = True
     INSTALLED_APPS = Base.INSTALLED_APPS + ('debug_toolbar',)
 
-    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
     STATIC_URL = '/static/'
 
@@ -243,6 +243,7 @@ class Prod(Base):
         },
     }
 
+    CRONTAB_COMMAND_PREFIX = 'DJANGO_CONFIGURATION=Prod'
     # run "python manage.py crontab add" to add jobs to crontab
     # run "python manage.py crontab remove" to remove jobs
     CRONJOBS = [
