@@ -150,7 +150,7 @@ def create_event_view(request, user_id):
             messages.add_message(request, messages.INFO, "Your form didn't validate. Please check it and try again.")
             return redirect(create_event_view, request.user.pk)  # Add message
     else:
-        context = {'event_form': EventForm()}
+        context = {'event_form': EventForm(current_user=request.user)}
         return render(request, 'iuvo_app/create_event.html', context)
 
 
