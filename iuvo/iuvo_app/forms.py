@@ -1,6 +1,5 @@
 from django.forms import ModelForm, CharField, ChoiceField
 from iuvo_app.models import Event, Contact
-from registration.forms import RegistrationForm
 from django import forms
 
 
@@ -34,13 +33,3 @@ class EventForm(ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=30)
     password = forms.CharField(widget=forms.PasswordInput)
-    # password = forms.PasswordInput()
-
-
-# class RegisterForm(RegistrationForm):
-#     first_name = forms.CharField(widget=forms.TextInput(label='first_name'))
-#     last_name = forms.CharField(widget=forms.TextInput(labe='last_name'))
-    # username = forms.CharField(max_length=30)
-    # email = forms.EmailField(max_length=75)
-    # password1 = forms.CharField(widget=forms.PasswordInput)
-    # password2 = forms.CharField(widget=forms.PasswordInput)
