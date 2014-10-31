@@ -101,7 +101,7 @@ def create_event_view(request, user_id):
     if int(user_id) != request.user.pk:
         raise Http404
     if request.method == 'POST':
-        form = EventForm(request.POST)
+        form = EventForm(request.user, data=request.POST)
         if form.is_valid():
             event = form.save(commit=False)
             event.owner = request.user
