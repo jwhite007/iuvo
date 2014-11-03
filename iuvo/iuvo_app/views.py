@@ -134,7 +134,9 @@ def create_event_view(request, user_id):
                     start_date < now or
                     end_date < start_date or
                     notify_date < end_date):
-                raise ValueError  # Change this to a better response
+                # raise ValueError  # Change this to a better response
+                messages.add_message(request, messages.WARNING, "Please make sure that your times are correct. End time must be later than Start time and Notify time must be later than End time")
+                return redirect(create_event_view, request.user.pk)
 
             event.start_date = start_date
             event.end_date = end_date
@@ -147,7 +149,7 @@ def create_event_view(request, user_id):
             event.save()
             return redirect(view_event_view, request.user.pk, event.pk)
         else:
-            messages.add_message(request, messages.INFO, "Your form didn't validate. Please check it and try again.")
+            messages.add_message(request, messages.WARNING, "Your form didn't validate. Please check it and try again.")
             return redirect(create_event_view, request.user.pk)  # Add message
     else:
         context = {'event_form': EventForm(current_user=request.user)}
@@ -190,7 +192,9 @@ def edit_event_view(request, user_id, event_id):
             if (  # Checking for appropriate dates.
                     end_date < now or
                     notify_date < end_date):
-                raise ValueError  # Change this to a better response
+                # raise ValueError  # Change this to a better response
+                messages.add_message(request, messages.WARNING, "Please make sure that your times are correct. End time must be later than Start time and Notify time must be later than End time")
+                return redirect(create_event_view, request.user.pk)
 
             event.start_date = start_date
             event.end_date = end_date
